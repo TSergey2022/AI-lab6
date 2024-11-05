@@ -44,6 +44,11 @@ public class GridedDistributor : MonoBehaviour
             spawned.Add(gridPoint);
             var item = prefabsPool[i];
             item.transform.localPosition = gridToCoords(gridPoint);
+            item.transform.localRotation = Quaternion.identity; 
+            var body = item.GetComponent<Rigidbody>();
+            if(body != null) {
+                body.velocity = Vector3.zero;
+            }
             item.SetActive(true);
         }
         for (var i = countItems; i < oldActive; i++)
