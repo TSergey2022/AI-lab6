@@ -1,16 +1,20 @@
+using System;
 using UnityEngine;
 using Unity.MLAgents;
 using Unity.MLAgents.Actuators;
+using Unity.MLAgents.Sensors;
+// ReSharper disable InconsistentNaming
 
 public class AgentPusher : Agent
 {
-    float m_LateralSpeed = 0.15f;
-    float m_ForwardSpeed = 0.5f;
+    readonly float m_LateralSpeed = 0.15f;
+    readonly float m_ForwardSpeed = 0.5f;
 
 
     [HideInInspector]
     public Rigidbody agentRb;
-
+    
+    public GameEnvController envController;
 
     public override void Initialize()
     {
@@ -18,7 +22,16 @@ public class AgentPusher : Agent
         agentRb.maxAngularVelocity = 500;
     }
 
-    public void MoveAgent(ActionSegment<int> act)
+    private void OnCollisionEnter(Collision other)
+    {
+        if (other.gameObject.CompareTag("wall"))
+        {
+            AddReward(-1.0f);
+            EndEpisode();
+        }
+    }
+
+    private void MoveAgent(ActionSegment<int> act)
     {
         var dirToGo = Vector3.zero;
         var rotateDir = Vector3.zero;
@@ -28,35 +41,24 @@ public class AgentPusher : Agent
         var rightAxis = act[1];
         var rotateAxis = act[2];
 
-        switch (forwardAxis)
+        dirToGo = rightAxis switch
         {
-            case 1:
-                dirToGo = transform.forward * m_ForwardSpeed;
-                break;
-            case 2:
-                dirToGo = transform.forward * -m_ForwardSpeed;
-                break;
-        }
+            1 => transform.right * m_LateralSpeed,
+            2 => transform.right * -m_LateralSpeed,
+            _ => forwardAxis switch
+            {
+                1 => transform.forward * m_ForwardSpeed,
+                2 => transform.forward * -m_ForwardSpeed,
+                _ => dirToGo
+            }
+        };
 
-        switch (rightAxis)
+        rotateDir = rotateAxis switch
         {
-            case 1:
-                dirToGo = transform.right * m_LateralSpeed;
-                break;
-            case 2:
-                dirToGo = transform.right * -m_LateralSpeed;
-                break;
-        }
-
-        switch (rotateAxis)
-        {
-            case 1:
-                rotateDir = transform.up * -1f;
-                break;
-            case 2:
-                rotateDir = transform.up * 1f;
-                break;
-        }
+            1 => transform.up * -1f,
+            2 => transform.up * 1f,
+            _ => rotateDir
+        };
 
         transform.Rotate(rotateDir, Time.deltaTime * 100f);
         agentRb.AddForce(dirToGo, ForceMode.VelocityChange);
@@ -64,6 +66,9 @@ public class AgentPusher : Agent
 
     public override void OnActionReceived(ActionBuffers actionBuffers)
     {
+        // return;
+        var value = envController.door.GetActiveValue() * 0.8f;
+        // AddReward((-1f / MaxStep) * (1 - value));
         MoveAgent(actionBuffers.DiscreteActions);
     }
 
@@ -101,6 +106,12 @@ public class AgentPusher : Agent
 
     public override void OnEpisodeBegin()
     {
+        envController.ResetScene();
     }
-
+    
+    public override void CollectObservations(VectorSensor sensor)
+    {
+        // sensor.AddObservation(transform.localPosition);
+        // sensor.AddObservation(transform.localRotation.eulerAngles);
+    }
 }

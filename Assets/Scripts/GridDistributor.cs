@@ -1,8 +1,8 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
+// ReSharper disable InconsistentNaming
 
 public class GridedDistributor : MonoBehaviour
 {
@@ -11,12 +11,9 @@ public class GridedDistributor : MonoBehaviour
     public Vector2Int count;
     public Color gizmoColor = Color.red;
 
-    public GameObject[] prefabsPool = new GameObject[0];
+    public GameObject[] prefabsPool = Array.Empty<GameObject>();
     private readonly HashSet<Vector2> spawned = new();
 
-    void Start()
-    {
-    }
     private void ResizePrefabsPool(int newSize)
     {
         if (newSize < (prefabsPool?.Length ?? 0)) return;
@@ -33,21 +30,22 @@ public class GridedDistributor : MonoBehaviour
     public ReadOnlySpan<GameObject> Respawn(int countItems)
     {
         if (countItems > count.x * count.y)
-            throw new ArgumentException($"countItems shoud be less than grid area, actual: {countItems} > {count.x} * {count.y}");
+            throw new ArgumentException($"countItems should be less than grid area, actual: {countItems} > {count.x} * {count.y}");
         ResizePrefabsPool(countItems);
         var oldActive = spawned.Count;
         spawned.Clear();
         for (var i = 0; i < countItems; i++)
         {
-            var gridPoint = randomSpawnPoint();
-            while (spawned.Contains(gridPoint)) gridPoint = randomSpawnPoint();
+            var gridPoint = RandomSpawnPoint();
+            while (spawned.Contains(gridPoint)) gridPoint = RandomSpawnPoint();
             spawned.Add(gridPoint);
             var item = prefabsPool[i];
-            item.transform.localPosition = gridToCoords(gridPoint);
+            item.transform.localPosition = GridToCoords(gridPoint);
             item.transform.localRotation = Quaternion.identity; 
             var body = item.GetComponent<Rigidbody>();
             if(body != null) {
-                body.velocity = Vector3.zero;
+                if (!body.isKinematic)
+                    body.velocity = Vector3.zero;
             }
             item.SetActive(true);
         }
@@ -55,11 +53,11 @@ public class GridedDistributor : MonoBehaviour
             prefabsPool[i].SetActive(false);
         return prefabsPool.AsSpan(0, countItems);
     }
-    private Vector2Int randomSpawnPoint()
+    private Vector2Int RandomSpawnPoint()
     {
         return new Vector2Int(Random.Range(0, count.x), Random.Range(0, count.y));
     }
-    private Vector3 gridToCoords(Vector2Int v)
+    private Vector3 GridToCoords(Vector2Int v)
     {
         var stepX = count.x > 1 ? size.x / (count.x - 1) : 0;
         var stepY = count.y > 1 ? size.y / (count.y - 1) : 0;
@@ -74,7 +72,7 @@ public class GridedDistributor : MonoBehaviour
         for (var x = 0; x < count.x; x++)
             for (var y = 0; y < count.y; y++)
                 Gizmos.DrawWireCube(
-                    center + gridToCoords(new Vector2Int(x, y)),
+                    center + GridToCoords(new Vector2Int(x, y)),
                     prefab.transform.localScale
                 );
     }

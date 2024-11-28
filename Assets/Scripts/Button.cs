@@ -1,7 +1,7 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
+
+// ReSharper disable InconsistentNaming
 
 public enum ButtonStates {
     Unpressed,
@@ -16,28 +16,72 @@ public class Button : DoorActivator
     Material pressedMaterial;
     [SerializeField]
     Material unpressedMaterial;
-    void Start()
+
+    private void Start()
     {
         mesh = GetComponent<MeshRenderer>();
         mesh.material = unpressedMaterial;
+        tag = "button_bad";
     }
 
-    int collisionsCount = 0;
+    int collisionsCount;
 
-    void OnCollisionEnter(Collision collision) {
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("agent")) {
+            return;
+            if (collisionsCount <= 0) {
+                var env = transform.parent.GetComponent<GameEnvController>();
+                env.GetAgent().AddReward(-1.0f);
+            }
+            return;
+        }
         collisionsCount++;
-        if (state == ButtonStates.Unpressed) {
-            state = ButtonStates.Pressed;
-            mesh.material = pressedMaterial;
-            onActivate.Invoke();
+        if (state != ButtonStates.Unpressed) return;
+        state = ButtonStates.Pressed;
+        mesh.material = pressedMaterial;
+        tag = "button_ok";
+        OnActivate.Invoke();
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        return;
+        if (!other.gameObject.CompareTag("agent")) return;
+        if (collisionsCount <= 0) {
+            var env = transform.parent.GetComponent<GameEnvController>();
+            env.GetAgent().AddReward(-0.1f);
         }
     }
-    void OnCollisionExit(Collision collision) {
+    
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.CompareTag("agent")) return;
         collisionsCount--;
-        if (collisionsCount <= 0 && state == ButtonStates.Pressed) {
-            state = ButtonStates.Unpressed;
-            mesh.material = unpressedMaterial;
-            onDeactivate.Invoke();
-        }
+        if (collisionsCount > 0 || state != ButtonStates.Pressed) return;
+        state = ButtonStates.Unpressed;
+        mesh.material = unpressedMaterial;
+        tag = "button_bad";
+        OnDeactivate.Invoke();
+    }
+    
+    private void OnCollisionEnter(Collision collision) {
+        if (collision.gameObject.CompareTag("agent")) return;
+        collisionsCount++;
+        if (state != ButtonStates.Unpressed) return;
+        state = ButtonStates.Pressed;
+        mesh.material = pressedMaterial;
+        tag = "button_ok";
+        OnActivate.Invoke();
+    }
+
+    private void OnCollisionExit(Collision collision) {
+        if (collision.gameObject.CompareTag("agent")) return;
+        collisionsCount--;
+        if (collisionsCount > 0 || state != ButtonStates.Pressed) return;
+        state = ButtonStates.Unpressed;
+        mesh.material = unpressedMaterial;
+        tag = "button_bad";
+        OnDeactivate.Invoke();
     }
 }

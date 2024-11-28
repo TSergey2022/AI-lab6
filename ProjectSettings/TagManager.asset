@@ -11,6 +11,8 @@ TagManager:
   - door
   - button
   - blueAgent
+  - button_ok
+  - button_bad
   layers:
   - Default
   - TransparentFX
