@@ -16,12 +16,12 @@ public class GameEnvController : MonoBehaviour
     private float timerStart;
     
     public AgentPusher GetAgent() => agent;
-    void Start()
+    
+    void Awake() 
     {
-        // door.onDoorOpen.AddListener(() => goal.gameObject.SetActive(true));
-        // door.onDoorOpen.AddListener(() => print(timerStart - Time.time));
         ResetScene();
     }
+    
     public void ResetScene()
     {
         // timerStart = Time.time;
@@ -35,7 +35,7 @@ public class GameEnvController : MonoBehaviour
             {
                 box.tag = "block";
                 box.GetComponent<Rigidbody>().isKinematic = false;
-                box.transform.rotation = Quaternion.Euler(0, 45, 0);
+                // box.transform.rotation = Quaternion.Euler(0, 45, 0);
             }
             else
             {
@@ -55,8 +55,8 @@ public class GameEnvController : MonoBehaviour
 
     public void OnGoalTriggered()
     {
-        agent.AddReward(10.0f);
+        // agent.SetReward(agent.GetCumulativeReward() + 1.0f);
+        agent.AddReward(1f);
         agent.EndEpisode();
-        ResetScene();
     }
 }

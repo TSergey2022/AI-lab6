@@ -27,22 +27,11 @@ public class Door : MonoBehaviour
     private void OnActivate()
     {
         activeCounter++;
-        if (gameObject.activeSelf)
-        {
-            var env = transform.parent.parent.GetComponent<GameEnvController>();
-            env.GetAgent().AddReward(1.0f);
-        }
         if (activeCounter == activators.Length) Open();
     }
     private void OnDeactivate()
     {
         activeCounter--;
-        if (gameObject.activeSelf)
-        {
-            var env = transform.parent.parent.GetComponent<GameEnvController>();
-            env.GetAgent().AddReward(-1.0f);
-            env.GetAgent().EndEpisode();
-        }
     }
     public void ResetActivators(DoorActivator[] newActivators)
     {

@@ -72,4 +72,8 @@ crashlytics-build.properties
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
 
-results
+/results/**/*
+!/results/NewNewSimple1Btn1Box2WallDoor/
+!/results/NewNewSimple1Btn1Box2WallDoor/**/*
+/results/NewNewSimple1Btn1Box2WallDoor/SoloPusher/*.pt
+/results/NewNewSimple1Btn1Box2WallDoor/SoloPusher/*.onnx

@@ -217,7 +217,7 @@ MonoBehaviour:
   agentParameters:
     maxStep: 0
   hasUpgradedFromAgentParameters: 1
-  MaxStep: 2000
+  MaxStep: 1000
   agentRb: {fileID: 0}
   envController: {fileID: 0}
 --- !u!114 &7674638430261066383
@@ -232,7 +232,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a5c9d521e5ef4759a8246a07d52221e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DecisionPeriod: 2
+  DecisionPeriod: 4
   DecisionStep: 0
   TakeActionsBetweenDecisions: 1
 --- !u!114 &923039282130301440

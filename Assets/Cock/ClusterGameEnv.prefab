@@ -267,7 +267,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buttonsOnEpisode: 1
-  boxesOnEpisode: 1
+  boxesOnEpisode: 3
   solidBoxesOnEpisode: 3
   buttonsDistributor: {fileID: 8779461011740598218}
   boxDistributor: {fileID: 7943489677105549355}

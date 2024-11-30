@@ -1,0 +1,155 @@
+{
+    "SoloPusher": {
+        "checkpoints": [
+            {
+                "steps": 49943,
+                "file_path": "results/NewNewSimple1Btn1Box2WallDoor/SoloPusher/SoloPusher-49943.onnx",
+                "reward": -0.6382307685338534,
+                "creation_time": 1732983336.7114804,
+                "auxillary_file_paths": [
+                    "results/NewNewSimple1Btn1Box2WallDoor/SoloPusher/SoloPusher-49943.pt"
+                ]
+            },
+            {
+                "steps": 99883,
+                "file_path": "results/NewNewSimple1Btn1Box2WallDoor/SoloPusher/SoloPusher-99883.onnx",
+                "reward": 0.39979545094750146,
+                "creation_time": 1732984370.9094994,
+                "auxillary_file_paths": [
+                    "results/NewNewSimple1Btn1Box2WallDoor/SoloPusher/SoloPusher-99883.pt"
+                ]
+            },
+            {
+                "steps": 149958,
+                "file_path": "results/NewNewSimple1Btn1Box2WallDoor/SoloPusher/SoloPusher-149958.onnx",
+                "reward": 0.7118552452639529,
+                "creation_time": 1732985313.2091653,
+                "auxillary_file_paths": [
+                    "results/NewNewSimple1Btn1Box2WallDoor/SoloPusher/SoloPusher-149958.pt"
+                ]
+            },
+            {
+                "steps": 199975,
+                "file_path": "results/NewNewSimple1Btn1Box2WallDoor/SoloPusher/SoloPusher-199975.onnx",
+                "reward": 0.94862499833107,
+                "creation_time": 1732986220.6776412,
+                "auxillary_file_paths": [
+                    "results/NewNewSimple1Btn1Box2WallDoor/SoloPusher/SoloPusher-199975.pt"
+                ]
+            },
+            {
+                "steps": 249977,
+                "file_path": "results/NewNewSimple1Btn1Box2WallDoor/SoloPusher/SoloPusher-249977.onnx",
+                "reward": 0.9119722092593158,
+                "creation_time": 1732987146.9837914,
+                "auxillary_file_paths": [
+                    "results/NewNewSimple1Btn1Box2WallDoor/SoloPusher/SoloPusher-249977.pt"
+                ]
+            },
+            {
+                "steps": 280143,
+                "file_path": "results/NewNewSimple1Btn1Box2WallDoor/SoloPusher/SoloPusher-280143.onnx",
+                "reward": 0.6306999862194062,
+                "creation_time": 1732987687.5445387,
+                "auxillary_file_paths": [
+                    "results/NewNewSimple1Btn1Box2WallDoor/SoloPusher/SoloPusher-280143.pt"
+                ]
+            },
+            {
+                "steps": 299984,
+                "file_path": "results/NewNewSimple1Btn1Box2WallDoor/SoloPusher/SoloPusher-299984.onnx",
+                "reward": 0.1606000006198883,
+                "creation_time": 1732988398.0598626,
+                "auxillary_file_paths": [
+                    "results/NewNewSimple1Btn1Box2WallDoor/SoloPusher/SoloPusher-299984.pt"
+                ]
+            },
+            {
+                "steps": 349989,
+                "file_path": "results/NewNewSimple1Btn1Box2WallDoor/SoloPusher/SoloPusher-349989.onnx",
+                "reward": 0.45687499311235213,
+                "creation_time": 1732989304.3287053,
+                "auxillary_file_paths": [
+                    "results/NewNewSimple1Btn1Box2WallDoor/SoloPusher/SoloPusher-349989.pt"
+                ]
+            },
+            {
+                "steps": 399969,
+                "file_path": "results/NewNewSimple1Btn1Box2WallDoor/SoloPusher/SoloPusher-399969.onnx",
+                "reward": 0.8660999655723571,
+                "creation_time": 1732990332.3849552,
+                "auxillary_file_paths": [
+                    "results/NewNewSimple1Btn1Box2WallDoor/SoloPusher/SoloPusher-399969.pt"
+                ]
+            },
+            {
+                "steps": 449990,
+                "file_path": "results/NewNewSimple1Btn1Box2WallDoor/SoloPusher/SoloPusher-449990.onnx",
+                "reward": 0.8710555301772224,
+                "creation_time": 1732991389.2742484,
+                "auxillary_file_paths": [
+                    "results/NewNewSimple1Btn1Box2WallDoor/SoloPusher/SoloPusher-449990.pt"
+                ]
+            },
+            {
+                "steps": 499830,
+                "file_path": "results/NewNewSimple1Btn1Box2WallDoor/SoloPusher/SoloPusher-499830.onnx",
+                "reward": 0.8467105187867817,
+                "creation_time": 1732992317.8071024,
+                "auxillary_file_paths": [
+                    "results/NewNewSimple1Btn1Box2WallDoor/SoloPusher/SoloPusher-499830.pt"
+                ]
+            },
+            {
+                "steps": 549902,
+                "file_path": "results/NewNewSimple1Btn1Box2WallDoor/SoloPusher/SoloPusher-549902.onnx",
+                "reward": 0.7784999887148539,
+                "creation_time": 1732993165.756684,
+                "auxillary_file_paths": [
+                    "results/NewNewSimple1Btn1Box2WallDoor/SoloPusher/SoloPusher-549902.pt"
+                ]
+            },
+            {
+                "steps": 599989,
+                "file_path": "results/NewNewSimple1Btn1Box2WallDoor/SoloPusher/SoloPusher-599989.onnx",
+                "reward": 0.7933970374219558,
+                "creation_time": 1732993910.9080446,
+                "auxillary_file_paths": [
+                    "results/NewNewSimple1Btn1Box2WallDoor/SoloPusher/SoloPusher-599989.pt"
+                ]
+            },
+            {
+                "steps": 649969,
+                "file_path": "results/NewNewSimple1Btn1Box2WallDoor/SoloPusher/SoloPusher-649969.onnx",
+                "reward": 0.8703749775886536,
+                "creation_time": 1732994689.0727682,
+                "auxillary_file_paths": [
+                    "results/NewNewSimple1Btn1Box2WallDoor/SoloPusher/SoloPusher-649969.pt"
+                ]
+            },
+            {
+                "steps": 680274,
+                "file_path": "results/NewNewSimple1Btn1Box2WallDoor/SoloPusher/SoloPusher-680274.onnx",
+                "reward": null,
+                "creation_time": 1732995186.3710315,
+                "auxillary_file_paths": [
+                    "results/NewNewSimple1Btn1Box2WallDoor/SoloPusher/SoloPusher-680274.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 680274,
+            "file_path": "results/NewNewSimple1Btn1Box2WallDoor/SoloPusher.onnx",
+            "reward": null,
+            "creation_time": 1732995186.3710315,
+            "auxillary_file_paths": [
+                "results/NewNewSimple1Btn1Box2WallDoor/SoloPusher/SoloPusher-680274.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "1.1.0",
+        "torch_version": "2.5.1+cu124"
+    }
+}

@@ -22,15 +22,6 @@ public class AgentPusher : Agent
         agentRb.maxAngularVelocity = 500;
     }
 
-    private void OnCollisionEnter(Collision other)
-    {
-        if (other.gameObject.CompareTag("wall"))
-        {
-            AddReward(-1.0f);
-            EndEpisode();
-        }
-    }
-
     private void MoveAgent(ActionSegment<int> act)
     {
         var dirToGo = Vector3.zero;
@@ -63,12 +54,10 @@ public class AgentPusher : Agent
         transform.Rotate(rotateDir, Time.deltaTime * 100f);
         agentRb.AddForce(dirToGo, ForceMode.VelocityChange);
     }
-
+    
     public override void OnActionReceived(ActionBuffers actionBuffers)
     {
-        // return;
-        var value = envController.door.GetActiveValue() * 0.8f;
-        // AddReward((-1f / MaxStep) * (1 - value));
+        AddReward((-1f / MaxStep) * (1f - envController.door.GetActiveValue() * 0.75f));
         MoveAgent(actionBuffers.DiscreteActions);
     }
 
@@ -107,11 +96,5 @@ public class AgentPusher : Agent
     public override void OnEpisodeBegin()
     {
         envController.ResetScene();
-    }
-    
-    public override void CollectObservations(VectorSensor sensor)
-    {
-        // sensor.AddObservation(transform.localPosition);
-        // sensor.AddObservation(transform.localRotation.eulerAngles);
     }
 }

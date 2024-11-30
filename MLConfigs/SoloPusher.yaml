@@ -2,8 +2,8 @@ behaviors:
   SoloPusher:
     trainer_type: ppo
     hyperparameters:
-      batch_size: 500
-      buffer_size: 10000
+      batch_size: 200
+      buffer_size: 2000
       learning_rate: 1.0e-4
       beta: 0.001
       epsilon: 0.2
@@ -27,8 +27,13 @@ behaviors:
       # curiosity:
       #   strength: 0.01
       #   gamma: 0.99
-      #   encoding_size: 128
-      #   learning_rate: 5.0e-3
+      #   encoding_size: 256
+      #   learning_rate: 1.0e-4
+      #   network_settings:
+      #     normalize: true
+      #     hidden_units: 256
+      #     num_layers: 2
+      #     vis_encode_type: simple
     checkpoint_interval: 50000
     keep_checkpoints: 200
     max_steps: 6000000
